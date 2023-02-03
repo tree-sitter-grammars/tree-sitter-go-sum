@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+set -e
+
+cd "$(dirname "$0")/.."
+
+known_failures="$(cat script/known_failures.txt)"
+
+# shellcheck disable=2046
+tree-sitter parse -q \
+	'examples/**/go.sum' \
+	$(for file in $known_failures; do echo "!${file}"; done)
+
+example_count=$(find examples -name 'go.sum' | wc -l)
+failure_count=$(wc -w <<< "$known_failures")
+success_count=$(( example_count - failure_count ))
+success_percent=$(bc -l <<< "100*${success_count}/${example_count}")
+
+printf \
+  "Successfully parsed %d of %d example files (%.1f%%)\n" \
+  $success_count "$example_count" "$success_percent"

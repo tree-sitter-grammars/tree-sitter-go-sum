@@ -1,0 +1,44 @@
+{
+  "name": "tree-sitter-go-sum",
+  "version": "0.0.1",
+  "description": "gosum grammar for tree-sitter",
+  "main": "bindings/node",
+  "keywords": [
+    "parser",
+    "lexer",
+    "gosum",
+    "go.sum"
+  ],
+  "author": "Amaan Qureshi <amaanq12@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/amaanq/tree-sitter-go-sum/issues"
+  },
+  "homepage": "https://github.com/amaanq/tree-sitter-go-sum#readme",
+  "dependencies": {
+    "nan": "^2.17.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.33.0",
+    "eslint-config-google": "^0.14.0",
+    "tree-sitter-cli": "^0.20.7"
+  },
+  "repository": "https://github.com/amaanq/tree-sitter-go-sum",
+  "scripts": {
+    "build": "tree-sitter generate && node-gyp build",
+    "test": "tree-sitter test && script/parse-examples",
+    "parse": "tree-sitter parse",
+    "test-windows": "tree-sitter test"
+  },
+  "tree-sitter": [
+    {
+      "scope": "source.sum",
+      "file-types": [
+        "sum"
+      ],
+      "highlights": [
+        "queries/highlights.scm"
+      ]
+    }
+  ]
+}
