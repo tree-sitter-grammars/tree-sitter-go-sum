@@ -23,8 +23,6 @@
 ] @number
 
 (checksum
-  (module_path)
-  (version)
   "go.mod" @string)
 
 [
