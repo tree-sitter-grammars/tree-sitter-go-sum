@@ -2,6 +2,7 @@
 name = "tree-sitter-go-sum"
 description = "gosum grammar for tree-sitter"
 version = "0.0.1"
+authors = ["Amaan Qureshi <amaanq12@gmail.com>"]
 keywords = ["incremental", "parsing", "gosum"]
 categories = ["parsing", "text-editors"]
 repository = "https://github.com/tree-sitter/tree-sitter-gosum"
