@@ -75,7 +75,7 @@
         "required": true,
         "types": [
           {
-            "type": "base_version",
+            "type": "module_version",
             "named": true
           }
         ]
@@ -85,7 +85,7 @@
         "required": true,
         "types": [
           {
-            "type": "base_version",
+            "type": "module_version",
             "named": true
           }
         ]
@@ -95,7 +95,7 @@
         "required": true,
         "types": [
           {
-            "type": "base_version",
+            "type": "module_version",
             "named": true
           }
         ]
@@ -144,7 +144,7 @@
       "required": true,
       "types": [
         {
-          "type": "base_version",
+          "type": "module_version",
           "named": true
         }
       ]
@@ -175,10 +175,6 @@
     "named": false
   },
   {
-    "type": "base_version",
-    "named": true
-  },
-  {
     "type": "beta",
     "named": false
   },
@@ -204,6 +200,10 @@
   },
   {
     "type": "module_path",
+    "named": true
+  },
+  {
+    "type": "module_version",
     "named": true
   },
   {

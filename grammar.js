@@ -1,3 +1,10 @@
+/**
+ * @file gosum grammar for tree-sitter
+ * @author Amaan Qureshi <amaanq12@gmail.com>
+ * @license MIT
+ * @see {@link https://go.dev/ref/mod#go-sum-files|official syntax spec}
+ */
+
 /* eslint-disable arrow-parens */
 /* eslint-disable camelcase */
 /* eslint-disable-next-line spaced-comment */
@@ -24,7 +31,7 @@ module.exports = grammar({
         '.',
         field('minor', $.number),
         '.',
-        field('patch', $.number)), $.base_version),
+        field('patch', $.number)), $.module_version),
       optional(seq(
         '-',
         field(
