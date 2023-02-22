@@ -23,6 +23,21 @@
     }
   },
   {
+    "type": "checksum_database",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "checksum",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "checksum_value",
     "named": true,
     "fields": {},
@@ -36,21 +51,6 @@
         },
         {
           "type": "hash_version",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "source_file",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "checksum",
           "named": true
         }
       ]

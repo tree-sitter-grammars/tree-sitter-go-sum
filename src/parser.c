@@ -35,11 +35,11 @@ enum {
   sym_number = 16,
   sym_number_with_decimal = 17,
   sym_hex_number = 18,
-  sym_source_file = 19,
+  sym_checksum_database = 19,
   sym_checksum = 20,
   sym_version = 21,
   sym_checksum_value = 22,
-  aux_sym_source_file_repeat1 = 23,
+  aux_sym_checksum_database_repeat1 = 23,
 };
 
 static const char * const ts_symbol_names[] = {
@@ -62,11 +62,11 @@ static const char * const ts_symbol_names[] = {
   [sym_number] = "number",
   [sym_number_with_decimal] = "number_with_decimal",
   [sym_hex_number] = "hex_number",
-  [sym_source_file] = "source_file",
+  [sym_checksum_database] = "checksum_database",
   [sym_checksum] = "checksum",
   [sym_version] = "version",
   [sym_checksum_value] = "checksum_value",
-  [aux_sym_source_file_repeat1] = "source_file_repeat1",
+  [aux_sym_checksum_database_repeat1] = "checksum_database_repeat1",
 };
 
 static const TSSymbol ts_symbol_map[] = {
@@ -89,11 +89,11 @@ static const TSSymbol ts_symbol_map[] = {
   [sym_number] = sym_number,
   [sym_number_with_decimal] = sym_number_with_decimal,
   [sym_hex_number] = sym_hex_number,
-  [sym_source_file] = sym_source_file,
+  [sym_checksum_database] = sym_checksum_database,
   [sym_checksum] = sym_checksum,
   [sym_version] = sym_version,
   [sym_checksum_value] = sym_checksum_value,
-  [aux_sym_source_file_repeat1] = aux_sym_source_file_repeat1,
+  [aux_sym_checksum_database_repeat1] = aux_sym_checksum_database_repeat1,
 };
 
 static const TSSymbolMetadata ts_symbol_metadata[] = {
@@ -173,7 +173,7 @@ static const TSSymbolMetadata ts_symbol_metadata[] = {
     .visible = true,
     .named = true,
   },
-  [sym_source_file] = {
+  [sym_checksum_database] = {
     .visible = true,
     .named = true,
   },
@@ -189,7 +189,7 @@ static const TSSymbolMetadata ts_symbol_metadata[] = {
     .visible = true,
     .named = true,
   },
-  [aux_sym_source_file_repeat1] = {
+  [aux_sym_checksum_database_repeat1] = {
     .visible = false,
     .named = false,
   },
@@ -814,9 +814,9 @@ static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
     [sym_hex_number] = ACTIONS(1),
   },
   [1] = {
-    [sym_source_file] = STATE(39),
+    [sym_checksum_database] = STATE(39),
     [sym_checksum] = STATE(7),
-    [aux_sym_source_file_repeat1] = STATE(7),
+    [aux_sym_checksum_database_repeat1] = STATE(7),
     [sym_module_path] = ACTIONS(3),
   },
 };
@@ -874,7 +874,7 @@ static const uint16_t ts_small_parse_table[] = {
       ts_builtin_sym_end,
     STATE(9), 2,
       sym_checksum,
-      aux_sym_source_file_repeat1,
+      aux_sym_checksum_database_repeat1,
   [72] = 3,
     ACTIONS(41), 1,
       anon_sym_DASH,
@@ -890,7 +890,7 @@ static const uint16_t ts_small_parse_table[] = {
       sym_module_path,
     STATE(9), 2,
       sym_checksum,
-      aux_sym_source_file_repeat1,
+      aux_sym_checksum_database_repeat1,
   [94] = 3,
     ACTIONS(52), 1,
       anon_sym_DASH,
@@ -1132,12 +1132,12 @@ static const TSParseActionEntry ts_parse_actions[] = {
   [31] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_version, 12, .production_id = 8),
   [33] = {.entry = {.count = 1, .reusable = true}}, SHIFT(44),
   [35] = {.entry = {.count = 1, .reusable = true}}, SHIFT(25),
-  [37] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_source_file, 1),
+  [37] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_checksum_database, 1),
   [39] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_version, 11, .production_id = 6),
   [41] = {.entry = {.count = 1, .reusable = true}}, SHIFT(41),
   [43] = {.entry = {.count = 1, .reusable = true}}, SHIFT(28),
-  [45] = {.entry = {.count = 1, .reusable = true}}, REDUCE(aux_sym_source_file_repeat1, 2),
-  [47] = {.entry = {.count = 2, .reusable = true}}, REDUCE(aux_sym_source_file_repeat1, 2), SHIFT_REPEAT(23),
+  [45] = {.entry = {.count = 1, .reusable = true}}, REDUCE(aux_sym_checksum_database_repeat1, 2),
+  [47] = {.entry = {.count = 2, .reusable = true}}, REDUCE(aux_sym_checksum_database_repeat1, 2), SHIFT_REPEAT(23),
   [50] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_version, 8, .production_id = 2),
   [52] = {.entry = {.count = 1, .reusable = true}}, SHIFT(45),
   [54] = {.entry = {.count = 1, .reusable = true}}, SHIFT(27),

@@ -1,7 +1,7 @@
 {
   "name": "gosum",
   "rules": {
-    "source_file": {
+    "checksum_database": {
       "type": "REPEAT1",
       "content": {
         "type": "SYMBOL",
