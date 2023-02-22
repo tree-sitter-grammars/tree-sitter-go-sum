@@ -1,14 +1,15 @@
 [package]
 name = "tree-sitter-go-sum"
 description = "gosum grammar for tree-sitter"
-version = "0.0.1"
+version = "0.0.2"
 authors = ["Amaan Qureshi <amaanq12@gmail.com>"]
+license = "MIT"
 readme = "bindings/rust/README.md"
 keywords = ["incremental", "parsing", "gosum"]
 categories = ["parsing", "text-editors"]
-repository = "https://github.com/tree-sitter/tree-sitter-gosum"
+repository = "https://github.com/amaanq/tree-sitter-gosum"
 edition = "2021"
-license = "MIT"
+autoexamples = false
 
 build = "bindings/rust/build.rs"
 include = ["bindings/rust/*", "grammar.js", "queries/*", "src/*"]
