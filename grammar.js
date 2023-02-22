@@ -15,7 +15,7 @@ module.exports = grammar({
   name: 'gosum',
 
   rules: {
-    source_file: $ => repeat1($.checksum),
+    checksum_database: $ => repeat1($.checksum),
 
     checksum: $ => seq(
       $.module_path,
