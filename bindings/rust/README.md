@@ -8,7 +8,7 @@ way.)
 
 ```toml
 [dependencies]
-tree-sitter = "~0.20.3"
+tree-sitter = "~0.20.10"
 tree-sitter-go-sum = "0.0.2"
 ```
 
@@ -17,9 +17,7 @@ grammar to a tree-sitter [Parser][], and then use the parser to parse some code:
 
 ```rust
 let code = r#"
-    fn double(x: i32) -> i32 {
-        x * 2
-    }
+golang.org/x/crypto v0.0.0-20180904163835-0709b304e793/go.mod h1:6SG95UA2DQfeDnfUPMdvaQW0Q7yPrPDi9nlGo2tz2b4=
 "#;
 let mut parser = Parser::new();
 parser.set_language(tree_sitter_gosum::language()).expect("Error loading gosum grammar");
