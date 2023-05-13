@@ -1,6 +1,6 @@
 {
   "name": "tree-sitter-go-sum",
-  "version": "0.0.2",
+  "version": "1.0.0",
   "description": "gosum grammar for tree-sitter",
   "main": "bindings/node",
   "keywords": [
