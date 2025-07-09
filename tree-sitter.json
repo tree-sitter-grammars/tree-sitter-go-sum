@@ -1,0 +1,30 @@
+{
+  "$schema": "https://tree-sitter.github.io/tree-sitter/assets/schemas/config.schema.json",
+  "grammars": [
+    {
+      "name": "gosum",
+      "camelcase": "GoSum",
+      "title": "go.sum",
+      "scope": "source.gosum",
+      "injection-regex": "^gosum$",
+      "class-name": "TreeSitterGoSum",
+      "highlights": "queries/highlights.scm",
+      "file-types": [
+        "go.sum"
+      ]
+    }
+  ],
+  "metadata": {
+    "version": "1.0.0",
+    "description": "go.sum grammar for tree-sitter",
+    "authors": [
+      {
+        "name": "Amaan Qureshi",
+        "email": "amaanq12@gmail.com"
+      }
+    ],
+    "links": {
+      "repository": "https://github.com/tree-sitter-grammars/tree-sitter-go-sum"
+    }
+  }
+}

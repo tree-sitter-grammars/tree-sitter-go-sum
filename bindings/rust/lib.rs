@@ -1,43 +1,41 @@
-//! This crate provides gosum language support for the [tree-sitter][] parsing library.
+//! This crate provides go.sum language support for the [tree-sitter] parsing library.
 //!
-//! Typically, you will use the [language][language func] function to add this language to a
-//! tree-sitter [Parser][], and then use the parser to parse some code:
+//! Typically, you will use the [`LANGUAGE`] constant to add this language to a
+//! tree-sitter [`Parser`], and then use the parser to parse some code:
 //!
 //! ```
-//! let code = "";
+//! let code = r#"
+//! github.com/tree-sitter/go-tree-sitter v0.24.0 h1:kRZb6aBNfcI/u0Qh8XEt3zjNVnmxTisDBN+kXK0xRYQ=
+//! github.com/tree-sitter/go-tree-sitter v0.24.0/go.mod h1:x681iFVoLMEwOSIHA1chaLkXlroXEN7WY+VHGFaoDbk=
+//! "#;
 //! let mut parser = tree_sitter::Parser::new();
-//! parser.set_language(tree_sitter_gosum::language()).expect("Error loading gosum grammar");
+//! let language = tree_sitter_gosum::LANGUAGE;
+//! parser
+//!     .set_language(&language.into())
+//!     .expect("Error loading go.sum parser");
 //! let tree = parser.parse(code, None).unwrap();
+//! assert!(!tree.root_node().has_error());
 //! ```
 //!
-//! [Language]: https://docs.rs/tree-sitter/*/tree_sitter/struct.Language.html
-//! [language func]: fn.language.html
-//! [Parser]: https://docs.rs/tree-sitter/*/tree_sitter/struct.Parser.html
+//! [`Parser`]: https://docs.rs/tree-sitter/0.25.6/tree_sitter/struct.Parser.html
 //! [tree-sitter]: https://tree-sitter.github.io/
 
-use tree_sitter::Language;
+use tree_sitter_language::LanguageFn;
 
 extern "C" {
-    fn tree_sitter_gosum() -> Language;
+    fn tree_sitter_gosum() -> *const ();
 }
 
-/// Get the tree-sitter [Language][] for this grammar.
+/// The tree-sitter [`LanguageFn`] for this grammar.
+pub const LANGUAGE: LanguageFn = unsafe { LanguageFn::from_raw(tree_sitter_gosum) };
+
+/// The content of the [`node-types.json`] file for this grammar.
 ///
-/// [Language]: https://docs.rs/tree-sitter/*/tree_sitter/struct.Language.html
-pub fn language() -> Language {
-    unsafe { tree_sitter_gosum() }
-}
-
-/// The source of the Rust tree-sitter grammar description.
-pub const GRAMMAR: &str = include_str!("../../grammar.js");
+/// [`node-types.json`]: https://tree-sitter.github.io/tree-sitter/using-parsers/6-static-node-types
+pub const NODE_TYPES: &str = include_str!("../../src/node-types.json");
 
 /// The syntax highlighting query for this language.
 pub const HIGHLIGHTS_QUERY: &str = include_str!("../../queries/highlights.scm");
-
-/// The content of the [`node-types.json`][] file for this grammar.
-///
-/// [`node-types.json`]: https://tree-sitter.github.io/tree-sitter/using-parsers#static-node-types
-pub const NODE_TYPES: &str = include_str!("../../src/node-types.json");
 
 #[cfg(test)]
 mod tests {
@@ -45,7 +43,7 @@ mod tests {
     fn test_can_load_grammar() {
         let mut parser = tree_sitter::Parser::new();
         parser
-            .set_language(super::language())
-            .expect("Error loading gosum grammar");
+            .set_language(&super::LANGUAGE.into())
+            .expect("Error loading go.sum parser");
     }
 }
