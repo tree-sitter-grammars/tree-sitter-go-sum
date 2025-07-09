@@ -2,33 +2,47 @@ name: CI
 
 on:
   push:
-    branches:
-      - master
+    branches: [master]
+    paths:
+      - grammar.js
+      - src/**
+      - test/**
+      - bindings/**
+      - examples/**
+      - tree-sitter.json
   pull_request:
-    branches:
-      - "**"
+    paths:
+      - grammar.js
+      - src/**
+      - test/**
+      - bindings/**
+      - examples/**
+      - tree-sitter.json
+
+concurrency:
+  group: ${{github.workflow}}-${{github.ref}}
+  cancel-in-progress: true
 
 jobs:
   test:
-    runs-on: ${{ matrix.os }}
+    name: Test parser
+    runs-on: ${{matrix.os}}
     strategy:
-      fail-fast: true
+      fail-fast: false
       matrix:
-        os: [macos-latest, ubuntu-latest]
+        os: [ubuntu-latest, windows-latest, macos-latest]
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v2
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set up tree-sitter
+        uses: tree-sitter/setup-action/cli@v2
+      - name: Run parser and binding tests
+        uses: tree-sitter/parser-test-action@v2
         with:
-          node-version: 16
-      - run: npm install
-      - run: npm test
-
-  test_windows:
-    runs-on: windows-2019
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v2
+          generate: false
+          test-rust: true
+      - name: Parse sample files
+        uses: tree-sitter/parse-action@v4
+        id: parse-files
         with:
-          node-version: 16
-      - run: npm install
-      - run: npm run-script test-windows
+          files: examples/**
