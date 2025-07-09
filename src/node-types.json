@@ -25,6 +25,7 @@
   {
     "type": "checksum_database",
     "named": true,
+    "root": true,
     "fields": {},
     "children": {
       "multiple": true,
