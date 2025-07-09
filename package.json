@@ -1,46 +1,54 @@
 {
-  "name": "tree-sitter-go-sum",
+  "name": "tree-sitter-gosum",
   "version": "1.0.0",
-  "description": "gosum grammar for tree-sitter",
-  "main": "bindings/node",
-  "keywords": [
-    "parser",
-    "lexer",
-    "gosum",
-    "go.sum"
-  ],
-  "author": "Amaan Qureshi <amaanq12@gmail.com>",
+  "description": "go.sum grammar for tree-sitter",
+  "repository": "https://github.com/tree-sitter-grammars/tree-sitter-go-sum",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/amaanq/tree-sitter-go-sum/issues"
+  "author": {
+    "name": "Amaan Qureshi",
+    "email": "amaanq12@gmail.com"
   },
-  "homepage": "https://github.com/amaanq/tree-sitter-go-sum#readme",
+  "main": "bindings/node",
+  "types": "bindings/node",
+  "keywords": [
+    "incremental",
+    "parsing",
+    "tree-sitter",
+    "gosum"
+  ],
+  "files": [
+    "grammar.js",
+    "tree-sitter.json",
+    "binding.gyp",
+    "prebuilds/**",
+    "bindings/node/*",
+    "queries/*",
+    "src/**",
+    "*.wasm"
+  ],
   "dependencies": {
-    "nan": "^2.17.0"
+    "node-addon-api": "^8.3.1",
+    "node-gyp-build": "^4.8.4"
   },
   "devDependencies": {
-    "eslint": "^8.40.0",
-    "eslint-config-google": "^0.14.0",
-    "tree-sitter-cli": "^0.20.8"
+    "eslint": "^9.30.1",
+    "eslint-config-treesitter": "^1.0.2",
+    "prebuildify": "^6.0.1",
+    "tree-sitter-cli": "^0.25.6"
   },
-  "repository": "https://github.com/amaanq/tree-sitter-go-sum",
-  "scripts": {
-    "build": "tree-sitter generate && node-gyp build",
-    "lint": "eslint grammar.js",
-    "test": "tree-sitter test && script/parse-examples",
-    "parse": "tree-sitter parse",
-    "test-windows": "tree-sitter test"
+  "peerDependencies": {
+    "tree-sitter": "^0.22.4"
   },
-  "tree-sitter": [
-    {
-      "scope": "source.sum",
-      "injection-regex": "gosum",
-      "file-types": [
-        "sum"
-      ],
-      "highlights": [
-        "queries/highlights.scm"
-      ]
+  "peerDependenciesMeta": {
+    "tree-sitter": {
+      "optional": true
     }
-  ]
+  },
+  "scripts": {
+    "install": "node-gyp-build",
+    "lint": "eslint grammar.js",
+    "prestart": "tree-sitter build --wasm",
+    "start": "tree-sitter playground",
+    "test": "node --test bindings/node/*_test.js"
+  }
 }
