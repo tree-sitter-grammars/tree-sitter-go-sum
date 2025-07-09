@@ -1,8 +1,19 @@
 # tree-sitter-go-sum
 
-[![Build Status](https://github.com/amaanq/tree-sitter-go-sum/workflows/CI/badge.svg)](https://github.com/amaanq/tree-sitter-go-sum/workflows/CI/badge.svg)
-[![Discord](https://img.shields.io/discord/1063097320771698699?logo=discord)](https://discord.gg/w7nTvsVJhm)
+[![CI][ci]](https://github.com/tree-sitter-grammars/tree-sitter-go-sum/actions)
+[![discord][discord]](https://discord.gg/w7nTvsVJhm)
+[![matrix][matrix]](https://matrix.to/#/#tree-sitter-chat:matrix.org)
+[![npm][npm]](https://www.npmjs.com/package/tree-sitter-go-sum)
+[![crates][crates]](https://crates.io/crates/tree-sitter-go-sum)
 
-Gosum grammar for [tree-sitter](https://github.com/tree-sitter/tree-sitter)
+A tree-sitter parser for go.sum files.
 
-Adapted from [the Go modules reference](https://go.dev/ref/mod#go-sum-files)
+## References
+
+- [go.sum](https://go.dev/ref/mod#go-sum-files)
+
+[ci]: https://img.shields.io/github/actions/workflow/status/tree-sitter-grammars/tree-sitter-go-sum/ci.yml?logo=github&label=CI
+[discord]: https://img.shields.io/discord/1063097320771698699?logo=discord&label=discord
+[matrix]: https://img.shields.io/matrix/tree-sitter-chat%3Amatrix.org?logo=matrix&label=matrix
+[npm]: https://img.shields.io/npm/v/tree-sitter-go-sum?logo=npm
+[crates]: https://img.shields.io/crates/v/tree-sitter-go-sum?logo=rust
