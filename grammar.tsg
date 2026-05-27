@@ -1,0 +1,57 @@
+// go-sum grammar for tree-sitter (native DSL).
+// Translated from grammar.js.
+
+grammar {
+    language: "gosum",
+}
+
+rule checksum_database { repeat1(checksum) }
+
+rule checksum {
+    seq(
+        module_path,
+        seq(version, optional(seq("/", "go.mod"))),
+        checksum_value,
+    )
+}
+
+rule module_path { regexp(r"[a-zA-Z0-9\-_\./]+") }
+
+rule version {
+    seq(
+        alias(seq(
+            "v",
+            field(major, number),
+            ".",
+            field(minor, number),
+            ".",
+            field(patch, number),
+        ), module_version),
+        optional(seq(
+            "-",
+            field(pre_release, choice(
+                number_with_decimal,
+                seq(
+                    choice("alpha", "beta", "dev", "pre", "rc"),
+                    optional("."),
+                    number,
+                    optional(seq(".", number_with_decimal)),
+                ),
+            )),
+            optional(seq("-", field(build, hex_number))),
+        )),
+        optional("+incompatible"),
+    )
+}
+
+rule checksum_value { seq(hash_version, ":", hash) }
+
+rule hash_version { "h1" }
+
+rule hash { regexp(r"[a-zA-Z0-9+/]+={0,2}") }
+
+rule number { regexp(r"\d+") }
+
+rule number_with_decimal { regexp(r"[\d\.]+") }
+
+rule hex_number { regexp(r"[0-9a-fA-F]+") }
